@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<title>贪吃蛇</title>
+	<link rel="stylesheet" href="font/Aa小楷情书/Aa小楷情书.css">
+	<link rel="stylesheet" href="./snake-game.css">
+</head>
+<body>
+	<div class="container">
+		<!-- 开始界面 -->
+		<div class="start">
+			<div class="rules">
+				<ul>
+					<li>第一关</li>
+					<li>分数到达<span >10</span>分，进入下一关！</li>
+					<li>蛇碰到蛇身， 挑战失败！</li>
+					<li>蛇碰到障碍物，挑战失败!</li>
+					<li>蛇离开边界，挑战失败!</li>
+					<li>
+						<button id="begin">开始游戏</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 输界面 -->
+		<div class="defeated">
+			<p>很遗憾! 挑战失败！</p>
+			<button class="tryAgain">再来一次</button>
+		</div>
+		<!-- 关卡赢的界面 -->
+		<div class="win">
+			<p>恭喜您！挑战成功</p>
+			<button class="nextPoint">下一关</button>
+		</div>
+		<!-- 下一关界面 - 规则-->
+		<div class="next" >
+			<div class="rules">
+				<ul>
+					<li>第二关</li>
+					<li>分数到达<span>20</span>分，通关！</li>
+					<li>蛇碰到蛇身， 挑战失败！</li>
+					<li>蛇碰到障碍物，挑战失败!</li>
+					<li>蛇离开边界，挑战失败!</li>
+					<li>
+						<button id="next">开始游戏</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 烟花界面 通关界面-->
+		<div class="firework" >
+			<p>恭喜你！ 通关啦！</p>
+			<div class="fireworks">
+				<img src="./fireworks.png" alt="" class="fireworkImg">
+				<img src="./fireworks.png" alt="" class="fireworkImg">
+				<img src="./fireworks.png" alt="" class="fireworkImg">
+			</div>
+			<img src="./celebration_firework.png" alt="" class="fireworktube">
+			<button id="restart">重新玩一次</button>
+		</div>
+		<!-- 说明区 -->
+		<div class="explainArea">
+			<ul>
+				<li>
+					<p>障碍物</p>
+					<embed src="obstruction.svg"></embed>
+				</li>
+				<li>
+					<p>蛋</p>
+					<img src="egg.png" alt="">
+				</li>
+				<li>
+					<p>分数:</p>
+					<p id="scores"></p>
+				</li>
+				<li>
+					<p>关卡</p> 
+					<select name="checkPoint" id="checkPoint" disabled="disabled">
+						<option value="第一个关">第一关</option>
+						<option value="第二个关">第二关</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+		<!-- 蛇之草地 - 结构 -->
+		<div class="snake-grassland">
+			<!-- 第一行 至 第十行-->
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div class="line">
+				<div class="cell">
+					
+				</div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+		</div>
+
+	</div>
+	
+	<script src="./snake-game.js"  charset="utf-8" type="text/javascript" ></script>
+</body>
+</html>
